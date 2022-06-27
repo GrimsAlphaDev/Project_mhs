@@ -14,14 +14,16 @@
     <title>Admin Page | @yield('title')</title>
     <link rel="canonical" href="https://www.wrappixel.com/templates/ample-admin-lite/" />
     <!-- Favicon icon -->
-    <link rel="icon" type="image/png" sizes="16x16" href="plugins/images/favicon.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="{{ url('plugins/images/favicon.png') }}">
     <!-- Custom CSS -->
-    <link href="plugins/bower_components/chartist/dist/chartist.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="plugins/bower_components/chartist-plugin-tooltips/dist/chartist-plugin-tooltip.css">
+    <link href="{{ url('plugins/bower_components/chartist/dist/chartist.min.css') }}" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url('plugins/bower_components/chartist-plugin-tooltips/dist/chartist-plugin-tooltip.css') }}">
     <!-- Custom CSS -->
-    <link href="css/style.min.css" rel="stylesheet">
+    <link href="{{ url('css/style.min.css') }}" rel="stylesheet">
     {{-- Bootstrap 5 --}}
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet">
+    {{-- Bootstrap Icon --}}
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.3/font/bootstrap-icons.css">
     <style>
         a {
             text-decoration: none;
@@ -57,7 +59,7 @@
                         <!-- Logo icon -->
                         <b class="logo-icon">
                             <!-- Dark Logo icon -->
-                            <img src="plugins/images/logo-icon.png" alt="homepage" />
+                            <img src="{{ url('plugins/images/logo-icon.png') }}" alt="homepage" />
                         </b>
                         <!--End Logo icon -->
                         <!-- Logo text -->
@@ -133,10 +135,10 @@
                             </a>
                         </li>
                         <li class="sidebar-item">
-                            <a class="sidebar-link waves-effect waves-dark sidebar-link  @if (Request::is('mahasiswa')) active @endif" href="{{ url('/mahasiswa') }}"
+                            <a class="sidebar-link waves-effect waves-dark sidebar-link  @if (Request::is('mahasiswa*')) active @endif" href="{{ url('/mahasiswa') }}"
                                 aria-expanded="false">
                                 <i class="fa fa-user" aria-hidden="true"></i>
-                                <span class="hide-menu">List mahasiswa</span>
+                                <span class="hide-menu">Mahasiswa</span>
                             </a>
                         </li>
                         <li class="sidebar-item">
@@ -205,7 +207,7 @@
             <!-- ============================================================== -->
             <div class="page-breadcrumb bg-white">
                 <div class="row align-items-center">
-                    <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
+                    <div class="">
                         <h4 class="page-title">@yield('pagetitle')</h4>
                     </div>
 
@@ -252,22 +254,24 @@
         <!-- ============================================================== -->
         <!-- All Jquery -->
         <!-- ============================================================== -->
-        <script src="plugins/bower_components/jquery/dist/jquery.min.js"></script>
+        <script src="{{ url('plugins/bower_components/jquery/dist/jquery.min.js') }}"></script>
         <!-- Bootstrap tether Core JavaScript -->
-        <script src="bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-        <script src="js/app-style-switcher.js"></script>
-        <script src="plugins/bower_components/jquery-sparkline/jquery.sparkline.min.js"></script>
+        <script src="{{ url('bootstrap/dist/js/bootstrap.bundle.min.js') }}"></script>
+        <script src="{{ url('js/app-style-switcher.js') }}"></script>
+        <script src="{{ url('plugins/bower_components/jquery-sparkline/jquery.sparkline.min.js') }}"></script>
         <!--Wave Effects -->
-        <script src="js/waves.js"></script>
+        <script src="{{ url('js/waves.js') }}"></script>
         <!--Menu sidebar -->
-        <script src="js/sidebarmenu.js"></script>
+        <script src="{{ url('js/sidebarmenu.js') }}"></script>
         <!--Custom JavaScript -->
-        <script src="js/custom.js"></script>
+        <script src="{{ url('js/custom.js') }}"></script>
         <!--This page JavaScript -->
         <!--chartis chart-->
-        <script src="plugins/bower_components/chartist/dist/chartist.min.js"></script>
-        <script src="plugins/bower_components/chartist-plugin-tooltips/dist/chartist-plugin-tooltip.min.js"></script>
-        <script src="js/pages/dashboards/dashboard1.js"></script>
+        <script src="{{ url('plugins/bower_components/chartist/dist/chartist.min.js') }}"></script>
+        <script src="{{ url('plugins/bower_components/chartist-plugin-tooltips/dist/chartist-plugin-tooltip.min.js') }}"></script>
+        <script src="{{ url('js/pages/dashboards/dashboard1.js') }}"></script>
+        {{-- Bundle --}}
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
 </body>
 
 </html>

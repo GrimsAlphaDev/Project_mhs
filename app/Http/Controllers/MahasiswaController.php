@@ -14,8 +14,8 @@ class MahasiswaController extends Controller
      */
     public function index()
     {
-        $mhs = Mahasiswa::get();
-        return view('Mahasiswa.index');
+        $mhs = Mahasiswa::orderBy('updated_at', 'desc')->paginate(5);
+        return view('Mahasiswa.index', ['mahasiswas' => $mhs]);
     }
 
     /**
@@ -25,7 +25,7 @@ class MahasiswaController extends Controller
      */
     public function create()
     {
-        //
+        // return view('Mahasiswa.create');
     }
 
     /**
@@ -36,7 +36,7 @@ class MahasiswaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        return $request;
     }
 
     /**
