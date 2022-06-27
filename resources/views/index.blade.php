@@ -4,12 +4,6 @@
 @section('pagetitle', 'Dashboard Admin')
 
 @section('container')
-<h1>List Mahasiswa</h1>
-
-    <table >
-        <tr>
-            <th>Afah iyah</th>
-        </tr>
-    </table>
+<h1>Coba</h1>
 
 @endsection

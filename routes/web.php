@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\MahasiswaController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -18,7 +19,9 @@ Route::get('/', function () {
 });
 
 Route::get('/dashboard', function () {
-    return view('Mahasiswa.index');
+    return view('index');
 })->middleware(['auth'])->name('dashboard');
+
+Route::resource('/mahasiswa', MahasiswaController::class)->middleware(['auth']);
 
 require __DIR__.'/auth.php';

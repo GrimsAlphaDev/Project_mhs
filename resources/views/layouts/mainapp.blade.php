@@ -127,16 +127,16 @@
                             <a class="sidebar-link waves-effect waves-dark sidebar-link 
                             @if (Request::is('dashboard')) active @endif
                             "
-                                href="dashboard.html" aria-expanded="false">
+                                href="{{ url('/dashboard') }}" aria-expanded="false">
                                 <i class="far fa-clock" aria-hidden="true"></i>
                                 <span class="hide-menu">Dashboard</span>
                             </a>
                         </li>
                         <li class="sidebar-item">
-                            <a class="sidebar-link waves-effect waves-dark sidebar-link" href="profile.html"
+                            <a class="sidebar-link waves-effect waves-dark sidebar-link  @if (Request::is('mahasiswa')) active @endif" href="{{ url('/mahasiswa') }}"
                                 aria-expanded="false">
                                 <i class="fa fa-user" aria-hidden="true"></i>
-                                <span class="hide-menu">Profile</span>
+                                <span class="hide-menu">List mahasiswa</span>
                             </a>
                         </li>
                         <li class="sidebar-item">
