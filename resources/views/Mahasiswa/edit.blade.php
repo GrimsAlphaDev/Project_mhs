@@ -4,5 +4,5 @@
 @section('pagetitle', 'Tambah Data Mahasiswa')
 
 @section('container')
-Awikwok
+Tested
 @endsection

@@ -4,6 +4,24 @@
 @section('pagetitle', 'Mahasiswa')
 
 @section('container')
+
+    {{-- jika message berhasil --}}
+    @if (session()->has('success'))
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            {{ session('success') }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    @endif
+
+    {{-- Jika message gagal --}}
+    @if (session()->has('error'))
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            {{ session('error') }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    @endif
+
+
     <h1 class="mb-3">List Mahasiswa</h1>
 
     <!-- Button trigger modal -->
@@ -30,7 +48,7 @@
                 <tr>
                     <td>{{ $no }}</td>
                     <td>{{ $mhs->nim }}</td>
-                    <td>{{ $mhs->nama_mhs }}</td>
+                    <td><a href="/mahasiswa/{{ $mhs->id }}">{{ $mhs->nama_mhs }}</a></td>
                     <td>{{ $mhs->umur }}</td>
                     <td>{{ $mhs->alamat }}</td>
                     <td>
@@ -38,7 +56,7 @@
                             <i class="bi bi-trash"></i>
                         </a>
                         |
-                        <a href="">
+                        <a href="/mahasiswa/{{ $mhs->id }}/edit">
                             <i class="bi bi-pencil"></i>
                         </a>
                     </td>
@@ -62,15 +80,31 @@
                     <div class="modal-body">
                         <div class="mb-3">
                             <label for="nama" class="form-label">Nama Mahasiswa</label>
-                            <input type="text" class="form-control" id="nama" name="nama">
-                          </div>
+                            <input type="text" class="form-control" id="nama" name="nama_mhs">
+                            @error('nama_mhs')
+                                <div class="alert alert-danger">{{ $message }}</div>
+                            @enderror
+                        </div>
+                        <div class="mb-3">
+                            <label for="email" class="form-label">Email Mahasiswa</label>
+                            <input type="email" class="form-control" id="email" name="email">
+                            @error('email')
+                                <div class="alert alert-danger">{{ $message }}</div>
+                            @enderror
+                        </div>
                         <div class="mb-3">
                             <label for="umur" class="form-label">Umur Mahasiswa</label>
                             <input type="number" class="form-control" id="umur" name="umur">
+                            @error('umur')
+                                <div class="alert alert-danger">{{ $message }}</div>
+                            @enderror
                         </div>
                         <div class="mb-3">
                             <label for="alamat" class="form-label">Alamat Mahasiswa</label>
                             <textarea class="form-control" id="alamat" name="alamat"></textarea>
+                            @error('alamat')
+                                <div class="alert alert-danger">{{ $message }}</div>
+                            @enderror
                         </div>
                     </div>
                     <div class="modal-footer">
@@ -83,4 +117,7 @@
     </div>
 
 
+    {{-- @error('nama')
+          <div class="alert alert-danger">{{ $message }}</div>
+        @enderror --}}
 @endsection

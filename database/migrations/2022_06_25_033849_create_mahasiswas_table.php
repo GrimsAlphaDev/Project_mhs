@@ -15,8 +15,9 @@ return new class extends Migration
     {
         Schema::create('mahasiswas', function (Blueprint $table) {
             $table->id();
-            $table->integer('nim')->unique();
+            $table->bigInteger('nim')->unique();
             $table->string('nama_mhs');
+            $table->string('email')->unique();
             $table->integer('umur');
             $table->text('alamat');
             $table->timestamps();

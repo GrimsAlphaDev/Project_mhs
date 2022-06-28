@@ -19,8 +19,9 @@ class MahasiswaFactory extends Factory
     {
         $nim = 2020012;
         return [
-            'nim' => $nim . $this->faker->numberBetween(100, 999),
+            'nim' => $nim . $this->faker->unique()->numberBetween(100, 999),
             'nama_mhs' => $this->faker->name(),
+            'email' => $this->faker->unique()->safeEmail,
             'umur' => rand(18, 23),
             'alamat' => $this->faker->address()            
         ];
