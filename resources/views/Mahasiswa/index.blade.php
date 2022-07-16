@@ -21,11 +21,22 @@
         </div>
     @endif
 
+    {{-- Show error from validation --}}
+    @if (count($errors) > 0)
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    @endif
 
     <h1 class="mb-3">List Mahasiswa</h1>
 
     <!-- Button trigger modal -->
-    <button type="button" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+    <button type="button" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#tambahData">
         Tambah Data Mahasiswa
     </button>
 
@@ -52,68 +63,22 @@
                     <td>{{ $mhs->umur }}</td>
                     <td>{{ $mhs->alamat }}</td>
                     <td>
-                        <a href="">
-                            <i class="bi bi-trash"></i>
-                        </a>
-                        |
-                        <a href="/mahasiswa/{{ $mhs->id }}/edit">
-                            <i class="bi bi-pencil"></i>
-                        </a>
+                        {{-- inline div --}}
+                        <div class="btn-group" role="group">
+                            <a href="/mahasiswa/{{ $mhs->id }}/edit" class="btn btn-outline-warning btn-sm text-dark">Edit</a>
+                            {{-- create small space between button --}}
+                            &nbsp; | &nbsp;
+                            <form action="/mahasiswa/{{ $mhs->id }}" method="post">
+                                @method('DELETE')
+                                @csrf
+                                <button type="submit" class="btn btn-outline-danger btn-sm" onclick="return confirm('Apakah Yakin Menghapus Data {{ $mhs->nama_mhs }}')">Delete</button>
+                            </form>
+                        </div>
                     </td>
                 </tr>
                 @php($no++)
             @endforeach
         </table>
-    </div>
-
-
-    <!-- Modal -->
-    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <form action="/mahasiswa" method="post">
-                @csrf
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Tambah Data Mahasiswa</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
-                        <div class="mb-3">
-                            <label for="nama" class="form-label">Nama Mahasiswa</label>
-                            <input type="text" class="form-control" id="nama" name="nama_mhs">
-                            @error('nama_mhs')
-                                <div class="alert alert-danger">{{ $message }}</div>
-                            @enderror
-                        </div>
-                        <div class="mb-3">
-                            <label for="email" class="form-label">Email Mahasiswa</label>
-                            <input type="email" class="form-control" id="email" name="email">
-                            @error('email')
-                                <div class="alert alert-danger">{{ $message }}</div>
-                            @enderror
-                        </div>
-                        <div class="mb-3">
-                            <label for="umur" class="form-label">Umur Mahasiswa</label>
-                            <input type="number" class="form-control" id="umur" name="umur">
-                            @error('umur')
-                                <div class="alert alert-danger">{{ $message }}</div>
-                            @enderror
-                        </div>
-                        <div class="mb-3">
-                            <label for="alamat" class="form-label">Alamat Mahasiswa</label>
-                            <textarea class="form-control" id="alamat" name="alamat"></textarea>
-                            @error('alamat')
-                                <div class="alert alert-danger">{{ $message }}</div>
-                            @enderror
-                        </div>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                        <button type="submit" class="btn btn-primary">Tambah Data</button>
-                    </div>
-                </div>
-            </form>
-        </div>
     </div>
 
 
